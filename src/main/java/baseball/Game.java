@@ -6,14 +6,26 @@ public class Game {
         if (number == null) {
             throw new IllegalArgumentException();
         }
-        if (number.length() != 3) {
+        if (!isThreeDigits(number)) {
             throw new IllegalArgumentException();
         }
-        if (!number.matches("[0-9]{3}")) {
+        if (!isAllDigits(number)) {
             throw new IllegalArgumentException();
         }
-        if (number.chars().distinct().count() != number.length()) {
+        if (isDuplicatedNumber(number)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isThreeDigits(String number) {
+        return number.length() == 3;
+    }
+
+    private boolean isAllDigits(String number) {
+        return number.matches("[0-9]{3}");
+    }
+
+    private boolean isDuplicatedNumber(String number) {
+        return number.chars().distinct().count() != number.length();
     }
 }
