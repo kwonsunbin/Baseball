@@ -49,6 +49,38 @@ public class GameTest {
         assertThat(result.balls()).isEqualTo(0);
     }
 
+    @Test
+    void 숫자는_맞지만_위치가_모두_다르면_3볼을_반환한다() {
+        Game game = new Game("123");
+        Result result = game.guess("231");
+        assertThat(result.strikes()).isEqualTo(0);
+        assertThat(result.balls()).isEqualTo(3);
+    }
+
+    @Test
+    void 하나만_위치가_같으면_1스트라이크를_반환한다() {
+        Game game = new Game("123");
+        Result result = game.guess("145");
+        assertThat(result.strikes()).isEqualTo(1);
+        assertThat(result.balls()).isEqualTo(0);
+    }
+
+    @Test
+    void 하나는_위치가_같고_하나는_숫자만_맞으면_1스트라이크_1볼을_반환한다() {
+        Game game = new Game("123");
+        Result result = game.guess("132");
+        assertThat(result.strikes()).isEqualTo(1);
+        assertThat(result.balls()).isEqualTo(2);
+    }
+
+    @Test
+    void 아무것도_맞지_않으면_0스트라이크_0볼을_반환한다() {
+        Game game = new Game("123");
+        Result result = game.guess("456");
+        assertThat(result.strikes()).isEqualTo(0);
+        assertThat(result.balls()).isEqualTo(0);
+    }
+
     private void assertIllegalArgument(Executable executable) {
         assertThrows(IllegalArgumentException.class, executable);
     }
