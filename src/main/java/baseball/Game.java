@@ -6,5 +6,8 @@ public class Game {
         if (number == null) {
             throw new IllegalArgumentException();
         }
+        if (number.length() != 3) {
+            throw new IllegalArgumentException();
+        }
     }
 }

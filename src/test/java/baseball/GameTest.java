@@ -18,4 +18,9 @@ public class GameTest {
     void 널_값을_입력하면_예외가_발생한다() {
         assertThrows(IllegalArgumentException.class, () -> game.guess(null));
     }
+
+    @Test
+    void 세_자리가_아닌_입력이면_예외가_발생한다() {
+        assertThrows(IllegalArgumentException.class, () -> game.guess("12"));
+    }
 }
