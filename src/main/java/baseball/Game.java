@@ -12,5 +12,8 @@ public class Game {
         if (!number.matches("[0-9]{3}")) {
             throw new IllegalArgumentException();
         }
+        if (number.chars().distinct().count() != number.length()) {
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -35,6 +35,11 @@ public class GameTest {
         assertIllegalArgument(() -> game.guess("12s"));
     }
 
+    @Test
+    void 중복된_숫자가_포함된_입력이면_예외가_발생한다() {
+        assertIllegalArgument(() -> game.guess("122"));
+    }
+
     private void assertIllegalArgument(Executable executable) {
         assertThrows(IllegalArgumentException.class, executable);
     }
