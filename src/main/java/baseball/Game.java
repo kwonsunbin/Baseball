@@ -13,19 +13,14 @@ public class Game {
     }
 
     public Result guess(String number) {
-        if (number == null) {
-            throw new IllegalArgumentException();
-        }
-        if (!isThreeDigits(number)) {
-            throw new IllegalArgumentException();
-        }
-        if (!isAllDigits(number)) {
-            throw new IllegalArgumentException();
-        }
-        if (isDuplicatedNumber(number)) {
-            throw new IllegalArgumentException();
-        }
+        validate(number);
         return calculateResult(number);
+    }
+
+    private void validate(String number) {
+        if (number == null || !isThreeDigits(number) || !isAllDigits(number) || isDuplicatedNumber(number)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private Result calculateResult(String number) {
