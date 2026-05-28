@@ -2,7 +2,17 @@ package baseball;
 
 public class Game {
 
-    public void guess(String number) {
+    private final String answer;
+
+    public Game() {
+        this.answer = null;
+    }
+
+    public Game(String answer) {
+        this.answer = answer;
+    }
+
+    public Result guess(String number) {
         if (number == null) {
             throw new IllegalArgumentException();
         }
@@ -15,6 +25,20 @@ public class Game {
         if (isDuplicatedNumber(number)) {
             throw new IllegalArgumentException();
         }
+        return calculateResult(number);
+    }
+
+    private Result calculateResult(String number) {
+        int strikes = 0;
+        int balls = 0;
+        for (int i = 0; i < 3; i++) {
+            if (answer.charAt(i) == number.charAt(i)) {
+                strikes++;
+            } else if (answer.contains(String.valueOf(number.charAt(i)))) {
+                balls++;
+            }
+        }
+        return new Result(strikes, balls);
     }
 
     private boolean isThreeDigits(String number) {

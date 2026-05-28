@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GameTest {
@@ -38,6 +39,14 @@ public class GameTest {
     @Test
     void 중복된_숫자가_포함된_입력이면_예외가_발생한다() {
         assertIllegalArgument(() -> game.guess("122"));
+    }
+
+    @Test
+    void 정답과_완전히_일치하면_3스트라이크를_반환한다() {
+        Game game = new Game("123");
+        Result result = game.guess("123");
+        assertThat(result.strikes()).isEqualTo(3);
+        assertThat(result.balls()).isEqualTo(0);
     }
 
     private void assertIllegalArgument(Executable executable) {
