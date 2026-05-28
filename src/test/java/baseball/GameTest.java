@@ -25,6 +25,16 @@ public class GameTest {
         assertIllegalArgument(() -> game.guess("12"));
     }
 
+    @Test
+    void 자릿수가_초과된_입력이면_예외가_발생한다() {
+        assertIllegalArgument(() -> game.guess("1234"));
+    }
+
+    @Test
+    void 숫자가_아닌_문자가_포함된_입력이면_예외가_발생한다() {
+        assertIllegalArgument(() -> game.guess("12s"));
+    }
+
     private void assertIllegalArgument(Executable executable) {
         assertThrows(IllegalArgumentException.class, executable);
     }

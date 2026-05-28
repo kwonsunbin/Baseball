@@ -9,5 +9,8 @@ public class Game {
         if (number.length() != 3) {
             throw new IllegalArgumentException();
         }
+        if (!number.matches("[0-9]{3}")) {
+            throw new IllegalArgumentException();
+        }
     }
 }
